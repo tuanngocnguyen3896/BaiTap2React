@@ -1,14 +1,8 @@
 import React, { Component } from "react";
-import GlassesInfo from "./GlassesInfo";
 export default class BaiTapLayout extends Component {
-  constructor(props) {
-    super(props);
-   
-  }
   state = {
     imgSrc: `./glassesImage/v1.png`,
-    glassesDetail: [
-    ],
+    glassesDetail: []
   };
   arrProduct= [
     {
@@ -114,28 +108,16 @@ export default class BaiTapLayout extends Component {
       }
     ));
   };
-  // Đổi hình ảnh kính khi click
+  // Đổi hình ảnh kính và info khi click
   changeGlass = (gl) => {
     let newGlasses = this.arrProduct.find((item) => item.id === gl.id);
+    // console.log(newGlasses)
     if (newGlasses) {
       this.setState({
         imgSrc: newGlasses.url,
         glassesDetail: gl,
       });
     }
-    // this.glassesDetail(newGlasses);
-  };
-
-  // Render thông tin kính
-  renderInfo = () => {
-    const result = this.arrProduct.map((gl, index) => {
-      return (
-        <div key={index}>
-          <GlassesInfo glasses={gl} />
-        </div>
-      );
-    });
-    return result;
   };
 
   render() {
@@ -181,7 +163,7 @@ export default class BaiTapLayout extends Component {
                 ></img>
               </div>
               <div>
-                {/* {this.renderInfo()} */}
+               
                 <div
                   className="card"
                   style={{
