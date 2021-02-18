@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import GlassesInfo from "./GlassesInfo";
 
-export default class Content extends Component {
+export default class Model extends Component {
   state = {
     glassesDetail: {
       id: 1,
@@ -94,29 +95,17 @@ export default class Content extends Component {
     },
   ];
   // Render hình ảnh kính lên giao diện
-  renderGlassesImage = () => {
-    return this.arrProduct.map(
-      (glasses, index) => {
-        return (
-          <div key={index} className="col-2 my-4">
-            <button
-              onClick={() => this.changeGlass(glasses)}
-              style={{ background: "none", outline: "none" }}
-            >
-              <img
-                style={{ cursor: "pointer" }}
-                width="100"
-                height="50"
-                src={glasses.url}
-              />
-            </button>
-          </div>
-        );
-      }
-    );
+  renderGlasses = () => {
+    return this.arrProduct.map((gl, index) => {
+      return (
+        <div className="col-2" key={index}>
+          <GlassesInfo xemCT={this.viewDetail} glasses={gl} />
+        </div>
+      );
+    });
   };
-  // Đổi hình ảnh kính và info khi click
-  changeGlass = (gl) => {
+
+  viewDetail = (gl) => {
     this.setState({
       glassesDetail: gl,
     });
@@ -125,6 +114,7 @@ export default class Content extends Component {
   render() {
     return (
       <div className="container">
+        {/* model  */}
         <div className="row mt-5">
           <div
             className="col-6 m-auto"
@@ -134,14 +124,15 @@ export default class Content extends Component {
               backgroundPosition: "center",
               height: 400,
               width: "35%",
+              position: "relative",
             }}
           >
             <div>
               <img
                 style={{
                   position: "absolute",
-                  left: "21%",
-                  top: "35%",
+                  left: "23%",
+                  top: "22%",
                   opacity: 0.7,
                 }}
                 width={220}
@@ -155,8 +146,8 @@ export default class Content extends Component {
                 style={{
                   backgroundColor: "orange",
                   position: "absolute",
-                  bottom: "17%",
-                  left: "14%",
+                  bottom: 0,
+                  left: 0,
                   width: 400,
                   opacity: 0.5,
                 }}
@@ -172,18 +163,9 @@ export default class Content extends Component {
               </div>
             </div>
           </div>
-          <div
-            className="col-6 m-auto"
-            style={{
-              backgroundImage: `url("./glassesImage/model.jpg")`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              height: 400,
-              width: "35%",
-            }}
-          ></div>
         </div>
-        <div className="row bg-white mt-3 ">{this.renderGlassesImage()}</div>
+        {/* Kính  */}
+        <div className="row bg-white mt-3 ">{this.renderGlasses()}</div>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Content from "./Content";
-import Header from './Header'
+import Model from "./Model";
+
 export default class BaiTapLayout extends Component {
   render() {
     return (
@@ -13,8 +13,13 @@ export default class BaiTapLayout extends Component {
           height: 800,
         }}
       >
-        <Header/>
-        <Content/>
+        <h2
+          className="text-white py-2 display-5"
+          style={{ backgroundColor: "black", opacity: 0.5 }}
+        >
+          Try Glassese Online
+        </h2>
+        <Model/>
       </div>
     );
   }
